@@ -1,0 +1,51 @@
+{
+  "name": "June multi step form test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch:less": "less-watch-compiler",
+    "dev-server": "live-server --ignore=less ./src",
+    "start": "npm-run-all --parallel dev-server watch:less",
+    "test": "stylelint 'src/less/**/*.less'",
+    "clean:dist": "rm -rf ./dist && mkdir ./dist",
+    "copy:dist": "rsync -av ./src/ ./dist --exclude less",
+    "clean:bak": "rm -r ./dist/*.bak",
+    "compile:less": "lessc ./src/less/style.less ./src/css/style.css",
+    "postcss-run": "LIST=`find ./dist/css -type f -name '*.css' | grep -v .min` && postcss $LIST --base ./dist/css --dir ./dist/css --ext min.css --verbose && rm -r $LIST",
+    "babel-run": "babel --verbose ./dist/js --ignore ./dist/js/**/*.min.js --out-dir ./dist/js && cd ./dist/js && renamer --find /'(.min)?(.js)$'/ --replace .min.js '**'",
+    "html:sed-css": "find ./dist -type f -name '*.html' -exec sed -i'.bak' '/<head>/,/<\\/head>/ s/\\(\\.min\\)\\{0,1\\}\\(\\.css\\)/.min.css/g' {} \\;",
+    "html:sed-js": "find ./dist -type f -name '*.html' -exec sed -i'.bak' '/<script/,/<\\/script>/ s/\\(\\.min\\)\\{0,1\\}\\(\\.js\\)/.min.js/g' {} \\;",
+    "build": "npm-run-all clean:dist compile:less copy:dist postcss-run babel-run html:sed-css html:sed-js clean:bak"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/concentrator/npm_html-less_tmpl.git"
+  },
+  "author": "Dmitry Iovlev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/concentrator/npm_html-less_tmpl/issues"
+  },
+  "homepage": "https://github.com/concentrator/npm_html-less_tmpl#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "autoprefixer": "^9.5.0",
+    "babel-preset-minify": "^0.5.0",
+    "cssnano": "^4.1.10",
+    "eslint": "^5.15.3",
+    "eslint-config-htmlacademy": "^0.5.2",
+    "less": "^3.9.0",
+    "less-watch-compiler": "^1.13.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^6.1.2",
+    "renamer": "^1.1.1",
+    "stylelint": "^9.10.1",
+    "stylelint-config-htmlacademy": "^0.1.1"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
