@@ -78,7 +78,10 @@ a {
   display: none !important;
 }
 .u-text-center {
-  text-align: center;
+  text-align: center !important;
+}
+.js-invalid {
+  border-color: red !important;
 }
 .visually-hidden {
   position: absolute;
@@ -186,9 +189,6 @@ a {
   border: 1px solid #000000;
   border-radius: 3px;
   font: inherit;
-}
-.form__input--invalid {
-  border-color: red;
 }
 .form__radio-label {
   display: block;

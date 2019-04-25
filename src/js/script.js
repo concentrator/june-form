@@ -30,7 +30,6 @@
     clickFromResult: false,
     errorMessage: null,
     isStorageSupport: true,
-    storage: '',
 
     nextButton: app.querySelector('.js-btn-next'),
 
@@ -41,7 +40,7 @@
       var i = June.currentIndex;
 
       // If validation passed get Current Section input with value
-      // Each section has to contain ony 1 field
+      // Each section has to contain ony 1 field (possible multi radio or checkboxes)
       var inputs = sections[i].querySelectorAll('.js-input');
       var el = June.validateInputs(inputs);
 
@@ -119,8 +118,7 @@
         fieldset.removeChild(currentError);
       }
 
-      // If only 1 input came, not nodelist
-      if(!inputs.length) {
+      if(!inputs.length || inputs.nodeName === 'SELECT') {
         var arr = [];
         arr.push(inputs);
         inputs = arr;
@@ -208,7 +206,7 @@
 
       this.hideCurrentSection();
       this.currentIndex = sections.length - 1;
-      this.showSection(this.currentIndex );
+      this.showSection(this.currentIndex);
 
       setTimeout(function () {
         June.nextButton.classList.add('u-hidden');
@@ -311,7 +309,7 @@
 
     checkStorage: function () {
       try {
-        this.storage = localStorage.getItem('test');
+        localStorage.getItem('test');
       } catch (err) {
         this.isStorageSupport = false;
       }
@@ -367,13 +365,19 @@
 
       for (var i = 0; i < inputs.length; i++) {
         if (June.validateInputs(inputs[i])) {
-          inputs[i].classList.remove('form__input--invalid');
+          inputs[i].classList.remove('js-invalid');
+          inputs[i].parentElement.classList.remove('js-invalid');
           June.setStorageValue(inputs[i]);
         } else {
-          inputs[i].classList.add('form__input--invalid');
+          if(inputs[i].nodeName === 'SELECT') {
+            inputs[i].parentElement.classList.add('js-invalid');
+          } else {
+            inputs[i].classList.add('js-invalid');
+          }
         }
       }
-      if(!sections[June.currentIndex].querySelector('.form__input--invalid')) {
+
+      if(!sections[June.currentIndex].querySelector('.js-invalid')) {
         var form = app.querySelector('#june-form');
         form.submit();
         localStorage.clear();
