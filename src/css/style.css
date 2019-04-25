@@ -1,3 +1,31 @@
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.fade-in {
+  animation: fade-in 0.5s ease;
+  opacity: 1;
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.fade-out {
+  animation: fade-out 0.5s ease;
+  opacity: 0;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
 *,
 *::before,
 *::after {
@@ -9,6 +37,10 @@ html {
 }
 body {
   min-width: 320px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.6rem;
+  line-height: 2.1rem;
+  color: #000000;
 }
 img {
   max-width: 100%;
@@ -16,12 +48,317 @@ img {
 a {
   text-decoration: none;
 }
-body {
+.heading {
+  font-size: 2rem;
+  line-height: 2.4rem;
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+}
+.heading--love-you::after {
+  content: " 🤟";
+}
+.heading--final {
+  font-weight: 700;
+  line-height: 3.2rem;
+}
+.paragraph {
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  margin-bottom: 2.5rem;
+}
+.paragraph--final {
+  line-height: 3rem;
+}
+.text-centered {
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto;
+}
+.u-hidden {
+  display: none !important;
+}
+.u-text-center {
+  text-align: center;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.row--bottom {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+.col-1-of-1 {
+  width: 100%;
+}
+.col-1-of-2 {
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+@media (min-width: 460px) {
+  .col-1-of-2 {
+    width: calc((100% / 2) - 1rem);
+    margin-right: 2rem;
+  }
+  .col-1-of-2:last-child {
+    margin-right: 0;
+  }
+}
+.col-1-of-4 {
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+@media (min-width: 460px) {
+  .col-1-of-4 {
+    width: calc((100% - (2rem * 3)) / 4);
+    margin-right: 2rem;
+  }
+  .col-1-of-4:last-child {
+    margin-right: 0;
+  }
+}
+.col-3-of-4 {
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+@media (min-width: 460px) {
+  .col-3-of-4 {
+    width: calc((100%  - 2rem * 3) * 3 / 4 + 2rem * 2);
+    margin-right: 2rem;
+  }
+  .col-3-of-4:last-child {
+    margin-right: 0;
+  }
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 85vh;
+  max-width: 51rem;
+  padding: 3.5rem 2.5rem;
+  margin: 0 auto;
+  border-radius: 2rem;
+  background-color: #fafafa;
+  box-shadow: 2px 5px 10px 0 rgba(0, 0, 0, 0.1);
+}
+@media (min-width: 460px) {
+  .app {
+    margin: 2rem auto;
+  }
+}
+.form {
+  margin-bottom: 4rem;
+}
+.form__legend {
+  margin-bottom: 2.5rem;
+  font-size: 1.8rem;
+  line-height: 2.4rem;
+  font-weight: 700;
+}
+.form__fieldset {
+  border: none;
+  margin-bottom: 2.5rem;
+}
+.form__label {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+.form__label--small {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.form__input {
+  width: 100%;
+  padding: 1rem 1.4rem;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  font: inherit;
+}
+.form__radio-label {
+  display: block;
+  padding: 1.9rem 1rem;
+  border-radius: 4px;
+  background-color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+.form__radio-input:checked + .form__radio-label {
+  color: #ffffff;
+  background-color: #57575f;
+}
+.form__select {
+  display: block;
+  width: 100%;
+  height: 4.2rem;
+  position: relative;
+  z-index: 1;
+  border: 1px solid #000000;
+  background-color: #ffffff;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.form__select::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-left: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  transform: rotate(-45deg);
+  z-index: -1;
+}
+.form__select select {
+  width: 100%;
+  height: 4rem;
+  padding: 1rem 1.4rem;
+  padding-right: 0.9rem;
+  padding-bottom: 0.9rem;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  background-image: none;
+  border-radius: 0;
+  font: inherit;
   color: #000000;
+  overflow: hidden;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
-h1 {
-  color: orange;
+.form__select select::-ms-expand {
+  display: none;
+  /* Удаляет стрелку в ie10 и ie11 */
 }
-.container {
-  width: 1000px;
+.form--summary {
+  counter-reset: chosen;
+}
+.form__field-chosen {
+  position: relative;
+  min-height: 5.8rem;
+  padding: 1.1rem;
+  padding-left: 6rem;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+.form__field-chosen::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+.form__field-chosen::before {
+  counter-increment: chosen;
+  content: counter(chosen);
+  display: block;
+  width: 3.5rem;
+  height: 3.5rem;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  border-radius: 50%;
+  background-color: #fafafa;
+  border: 1px solid #000000;
+  text-align: center;
+  line-height: 3.3rem;
+}
+.form__field-chosen--active::before {
+  content: "\2713";
+  color: #ffffff;
+  border-color: #ffffff;
+  background-color: #6f6f7a;
+  z-index: 1;
+}
+.form__field-chosen--active::after {
+  background-color: #57575f;
+}
+.form__field-chosen label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  line-height: 1.3rem;
+  color: #a4a4ab;
+}
+.form__field-chosen input {
+  display: block;
+  width: 100%;
+  font: inherit;
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  outline: none;
+  border: none;
+}
+.form__field-chosen-span {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  max-width: 100%;
+  padding-left: 4.2rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  line-height: 5.8rem;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+.form__submit {
+  margin-bottom: 2.5rem;
+}
+.button {
+  display: inline-block;
+  position: relative;
+  padding: 1.2rem 4rem;
+  font: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  border: none;
+  background: none;
+  border-radius: 3px;
+  background-color: #000000;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.button--next::after {
+  content: "\2192";
+  display: block;
+  position: absolute;
+  right: 1.7rem;
+  top: 1.3rem;
+  font-size: 2.1rem;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+.button:hover {
+  padding: 1.2rem 5rem;
+}
+.button--next:hover::after {
+  visibility: visible;
+  opacity: 1;
 }
