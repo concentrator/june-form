@@ -187,6 +187,9 @@ a {
   border-radius: 3px;
   font: inherit;
 }
+.form__input--invalid {
+  border-color: red;
+}
 .form__radio-label {
   display: block;
   padding: 1.9rem 1rem;
@@ -328,6 +331,10 @@ a {
 }
 .form__submit {
   margin-bottom: 2.5rem;
+}
+.form__error {
+  margin-top: 1rem;
+  color: red;
 }
 .button {
   display: inline-block;

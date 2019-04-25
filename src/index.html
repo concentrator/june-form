@@ -34,7 +34,7 @@
         </form>
       </div>
 
-      <form class="form" action="https://echo.htmlacademy.ru/" method="POST">
+      <form class="form" action="https://echo.htmlacademy.ru/" method="POST" id="june-form">
 
         <div class="form__section">
           <fieldset class="form__fieldset">
@@ -160,12 +160,12 @@
             <div class="row">
               <div class="form__field col-1-of-2">
                 <label class="form__label form__label--small" for="full-name">Full name</label>
-                <input class="form__input" type="text" placeholder="Ivan Shipilov" name="full-name" id="full-name" required>
+                <input class="form__input js-input" type="text" placeholder="Ivan Shipilov" name="full-name" id="full-name" autocomplete="off">
               </div>
 
               <div class="form__field col-1-of-2">
                 <label class="form__label form__label--small" for="email">Email</label>
-                <input class="form__input" type="text" placeholder="shipilov@gmail.com" name="email" id="email" required>
+                <input class="form__input js-input" type="text" placeholder="shipilov@gmail.com" name="email" id="email" autocomplete="off">
               </div>
             </div>
 
@@ -174,21 +174,21 @@
             <div class="row">
               <div class="col-1-of-4">
                 <div class="form__select">
-                  <select name="country-phone-code">
-                    <option value="US" data-country="United States">+1</option>
+                  <select class="form__select-item" name="country-phone-code">
+                    <option value="US" data-country="United States" selected>+1</option>
                     <option value="UK" data-country="United States">+44</option>
                   </select>
+                  </div>
                 </div>
-              </div>
 
-              <div class="col-3-of-4">
-                <input class="form__input" type="text" placeholder="832 488 34 12" name="phone" id="phone" required>
+                <div class="col-3-of-4">
+                  <input class="form__input js-input" type="text" placeholder="832 488 34 12" name="phone" id="phone" >
               </div>
             </div>
           </fieldset>
 
           <div class="text-centered">
-            <button class="form__submit button" type="submit">Book a tour</button>
+            <button class="form__submit button js-btn-submit" type="submit">Book a tour</button>
             <p class="paragraph">We have selected <span>4</span> homes specifically for you</p>
           </div>
 

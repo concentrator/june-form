@@ -29,6 +29,10 @@
     border: 1px solid @color-black;
     border-radius: 3px;
     font: inherit;
+
+    &--invalid {
+      border-color: red;
+    }
   }
 
   &__radio-label {
@@ -188,5 +192,10 @@
 
   &__submit {
     margin-bottom: 2.5rem;
+  }
+
+  &__error {
+    margin-top: 1rem;
+    color: red;
   }
 }
